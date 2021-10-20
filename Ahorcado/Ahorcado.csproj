@@ -86,6 +86,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="assets\hangman\hangman.xcf" />
+    <None Include="assets\hangman\LICENSE.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +95,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\hangman\0.jpg" />
+    <Resource Include="assets\hangman\1.jpg" />
+    <Resource Include="assets\hangman\10.jpg" />
+    <Resource Include="assets\hangman\2.jpg" />
+    <Resource Include="assets\hangman\3.jpg" />
+    <Resource Include="assets\hangman\4.jpg" />
+    <Resource Include="assets\hangman\5.jpg" />
+    <Resource Include="assets\hangman\6.jpg" />
+    <Resource Include="assets\hangman\7.jpg" />
+    <Resource Include="assets\hangman\8.jpg" />
+    <Resource Include="assets\hangman\9.jpg" />
+    <Resource Include="assets\hangman\README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,25 +13,41 @@
         </Style>
         <!--Botones Nueva Partida y Rendirse-->
         <Style TargetType="Button" x:Key="partida">
-            <Setter Property="Width" Value="150"></Setter>
-            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Margin" Value="15"></Setter>
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
         <!--Botones Nueva Partida y Rendirse-->
-        <Style TargetType="Button"
-               x:Key="partida">
-            <Setter Property="Width"
-                    Value="150"></Setter>
-            <Setter Property="Height"
-                    Value="50"></Setter>
-            <Setter Property="Margin"
-                    Value="15"></Setter>
-            <Setter Property="HorizontalAlignment"
-                    Value="Center"></Setter>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="35"></Setter>
+            <Setter Property="Grid.Height" Value="50"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
         </Style>
-
-
+        <!--Imagen-->
+        <Style TargetType="Image">
+            <Setter Property="Grid.RowSpan"
+                    Value="3">
+            </Setter>
+            <Setter Property="Stretch" Value="Fill">
+                
+            </Setter>
+        </Style>
+        <!-- UniformGrid de los botones del abecedario -->
+        <Style TargetType="UniformGrid">
+            <Setter Property="Grid.RowSpan"
+                    Value="3">
+            </Setter>
+            <Setter Property="Grid.Row" Value="2"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+        </Style>
+        <!-- Botones del abecedario -->
+        <Style TargetType="Button"
+               x:Key="abcButtons">
+            <Setter Property="Margin" Value="5">
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -42,15 +58,21 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="1">Ahocado</Label>
-        <StackPanel Grid.Row="3" Grid.Column="0">
-            <Button Style="{StaticResource partida}"></Button>
-            <Button Style="{StaticResource partida}"></Button>
+        <Image Source="assets\hangman\3.jpg"></Image>
+      
+        <StackPanel Grid.Row="3"
+                    Grid.Column="0">
+            <Button Style="{StaticResource partida}">Nueva Partida</Button>
+            <Button Style="{StaticResource partida}">Rendirse</Button>
         </StackPanel>
 
+        <Label Grid.Row="0" Grid.Column="1">Ahorcado</Label>
 
+        <UniformGrid x:Name="letrasUniformGrid" Rows="3" Columns="9"></UniformGrid>
+
+        
     </Grid>
 </Window>
