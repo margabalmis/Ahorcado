@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
+        <!--ViewBox label letras-->
+        <Style TargetType="Viewbox">
+            <Setter Property="Margin"
+                    Value="2"></Setter>
+        </Style>
+        <!--WrapPanel label letras-->
+        <Style TargetType="WrapPanel">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"></Setter>
+        </Style>
+        
         <!--StackPanel de Botones Nueva Partida y Rendirse-->
         <Style TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"></Setter>
@@ -48,6 +59,15 @@
             <Setter Property="Margin" Value="5">
             </Setter>
         </Style>
+        <!-- ScrollViewer de Guiones y Palabra -->
+        <Style TargetType="ScrollViewer">
+            <Setter Property="HorizontalScrollBarVisibility"
+                    Value="Visible">
+            </Setter>
+            <Setter Property="VerticalScrollBarVisibility"
+                    Value="Hidden">
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -70,6 +90,9 @@
         </StackPanel>
 
         <Label Grid.Row="0" Grid.Column="1">Ahorcado</Label>
+        
+        <ScrollViewer x:Name="palabraYGuiones"
+                   Grid.Row="1" Grid.Column="1"></ScrollViewer>
 
         <UniformGrid x:Name="letrasUniformGrid" Rows="3" Columns="9"></UniformGrid>
 
