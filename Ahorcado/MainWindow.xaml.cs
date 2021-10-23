@@ -21,10 +21,15 @@ namespace Ahorcado
     /// </summary>
     public partial class MainWindow : Window
     {
-        char[] abc = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K','L', 'M', 'N',
+        readonly char[] abc = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K','L', 'M', 'N',
                                    'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U','V', 'W','X', 'Y', 'Z' };
-        List<string> palabrasAdivinar = new List<string>() { "INFIERNO", "ÑU"};
+        readonly List<string> palabrasAdivinar = new List<string>() { "INFIERNO", "ÑU"};
         string palabraSeleccionada;
+        char letraSeleccionada;
+        TextBlock letra;
+        int numGuiones;
+        List<TextBlock> letraTextBlock = new List<TextBlock>();
+
 
 
         public MainWindow()
@@ -38,7 +43,7 @@ namespace Ahorcado
         private void GerenarGuiones()
         {
             char[] letras = palabraSeleccionada.ToCharArray();
-            int numGuiones = palabraSeleccionada.Length;
+            numGuiones = palabraSeleccionada.Length;
             WrapPanel guiones = new WrapPanel();
 
             for ( int i = 0; i< numGuiones; i++) {
@@ -46,12 +51,14 @@ namespace Ahorcado
                 Viewbox viewGuiones = new Viewbox();
                 Border border = new Border();
                 Label guion = new Label();
-                TextBlock letra = new TextBlock();
+                letra = new TextBlock()
+                {
+                    MinWidth = 25,
+                    Text = letras[i].ToString(),
+                    Visibility = Visibility.Hidden,
+                };
+                letraTextBlock.Add(letra);
 
-                letra.MinWidth = 25;
-                letra.Text = letras[i].ToString();
-                letra.Visibility = Visibility.Hidden;
-                
                 border.BorderBrush = Brushes.Black;
                 border.BorderThickness = new Thickness(0, 0, 0, 2);
 
@@ -76,26 +83,93 @@ namespace Ahorcado
 
             for (int i = 0; i < abc.Length; i++)
             {
+                Label letra = new Label() { Content = abc[i] };
+                Viewbox view = new Viewbox();
+
                 Button b = new Button()
                 {
                     Tag = abc[i],
-                    Style = (Style)this.Resources["abcButtons"]
+                    Style = (Style)this.Resources["abcButtons"],
+                    Content = view
                 };
-                
-                Viewbox view = new Viewbox();
+               
+                b.Click += ClickLetraBtt;
 
-                Label letra = new Label();
-
-                letra.Content = abc[i];
                 view.Child = letra;
-                b.Content = view;
 
                 letrasUniformGrid.Children.Add(b);
             }
 
-            
-        
         }
 
+        private void ClickLetraBtt(object sender, RoutedEventArgs e)
+        {
+            letraSeleccionada = char.Parse((sender as Button).Tag.ToString());
+            ComprobarLetra();
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                NuevaPartida();
+            }
+            else if (e.Key == Key.Escape)
+            {
+                Rendirse();
+            }
+            else {
+                string letra = e.Key.ToString();
+
+                ComprobarTeclaPulsada(char.Parse(letra));
+            }
+             
+        }
+   
+        private void ComprobarTeclaPulsada( char tecla )
+        {
+            if (palabraSeleccionada.Contains(tecla))
+            {
+                letraSeleccionada = tecla;
+            }
+            ComprobarLetra();
+        }
+       
+        private void Rendirse()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void NuevaPartida()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ComprobarLetra()
+        {
+            Char[] palabraArrayCaracteres = palabraSeleccionada.ToCharArray();
+
+            if (palabraArrayCaracteres.Contains(letraSeleccionada))
+            {
+                foreach( TextBlock textBlock in letraTextBlock )
+                {
+                    if (textBlock.Text == letraSeleccionada.ToString())
+                    {
+                        textBlock.Visibility = Visibility.Visible;
+                    }
+                }
+
+            }
+            else 
+            {
+                SumarFallo();
+            }
+
+        }
+
+        private void SumarFallo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
