@@ -69,8 +69,18 @@
         <Style
             TargetType="Label">
             <Setter
+                Property="FontFamily"
+                Value="MingLiU_HKSCS-ExtB"></Setter>
+            <Setter
+                Property="FontWeight"
+                Value="ExtraBold"></Setter>
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
+            <Setter
                 Property="FontSize"
-                Value="35"></Setter>
+                Value="32"></Setter>
+            
             <Setter
                 Property="Grid.Height"
                 Value="50"></Setter>
@@ -91,18 +101,14 @@
             TargetType="Border"
             x:Key="bordeImagen">
             <Setter
-                Property="BorderBrush"
-                Value="#FF2885C2">
-            </Setter>
-            <Setter
-                Property="CornerRadius"
-                Value="10"></Setter>
-            <Setter Property="BorderThickness" Value="1">
-            </Setter>
-          
-            <Setter
                 Property="Grid.RowSpan"
                 Value="3">
+            </Setter>
+            <Setter
+                Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect />
+                </Setter.Value>
             </Setter>
         </Style>
         <!-- UniformGrid de los botones del abecedario -->
@@ -184,8 +190,7 @@
 
         <Label
             Grid.Row="0"
-            Grid.Column="1"
-            >Ahorcado</Label>
+            Grid.Column="1">Ahorcado</Label>
 
         <ScrollViewer
             x:Name="palabraYGuiones"
