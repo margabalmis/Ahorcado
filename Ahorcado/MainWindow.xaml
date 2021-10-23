@@ -1,72 +1,149 @@
-﻿<Window x:Class="Ahorcado.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ahorcado"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        KeyUp="Window_KeyUp">
+﻿<Window
+    x:Class="Ahorcado.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Ahorcado"
+    mc:Ignorable="d"
+    Title="Ahorcado"
+    Height="450"
+    Width="800"
+    KeyUp="Window_KeyUp"
+    Icon="assets/iconLasso.png"
+    Background="#FFFBFBF3">
     <Window.Resources>
         <!--ViewBox label letras-->
-        <Style TargetType="Viewbox">
-            <Setter Property="Margin"
-                    Value="2"></Setter>
+        <Style
+            TargetType="Window">
+            <Setter
+                Property="Background"
+                Value="#FFEBF5F2"></Setter>
+        </Style>
+        <!--ViewBox label letras-->
+        <Style
+            TargetType="Viewbox">
+            <Setter
+                Property="Margin"
+                Value="2"></Setter>
         </Style>
         <!--WrapPanel label letras-->
-        <Style TargetType="WrapPanel">
-            <Setter Property="HorizontalAlignment"
-                    Value="Center"></Setter>
+        <Style
+            TargetType="WrapPanel">
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
         </Style>
-        
+
         <!--StackPanel de Botones Nueva Partida y Rendirse-->
-        <Style TargetType="StackPanel">
-            <Setter Property="Orientation" Value="Horizontal"></Setter>
+        <Style
+            TargetType="StackPanel">
+            <Setter
+                Property="Orientation"
+                Value="Horizontal"></Setter>
         </Style>
         <!--Botones Nueva Partida y Rendirse-->
-        <Style TargetType="Button" x:Key="partida">
-            <Setter Property="Width" Value="100"></Setter>
-            <Setter Property="Height" Value="30"></Setter>
-            <Setter Property="Margin" Value="15"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Style
+            TargetType="Button"
+            x:Key="partida">
+            <Setter
+                Property="Width"
+                Value="100"></Setter>
+            <Setter
+                Property="Height"
+                Value="30"></Setter>
+            <Setter
+                Property="Margin"
+                Value="15"></Setter>
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
+            <Setter
+                Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect />
+                </Setter.Value>
+            </Setter>
         </Style>
-        <!--Botones Nueva Partida y Rendirse-->
-        <Style TargetType="Label">
-            <Setter Property="FontSize"
-                    Value="35"></Setter>
-            <Setter Property="Grid.Height" Value="50"></Setter>
-            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <!--Label Ahorcado-->
+        <Style
+            TargetType="Label">
+            <Setter
+                Property="FontSize"
+                Value="35"></Setter>
+            <Setter
+                Property="Grid.Height"
+                Value="50"></Setter>
+            <Setter
+                Property="VerticalAlignment"
+                Value="Top"></Setter>
         </Style>
         <!--Imagen-->
-        <Style TargetType="Image">
-            <Setter Property="Grid.RowSpan"
-                    Value="3">
+        <Style
+            TargetType="Image">
+            <Setter
+                Property="Stretch"
+                Value="Fill">
             </Setter>
-            <Setter Property="Stretch" Value="Fill">
-                
+        </Style>
+        <!--Borde Imagen-->
+        <Style
+            TargetType="Border"
+            x:Key="bordeImagen">
+            <Setter
+                Property="BorderBrush"
+                Value="#FF2885C2">
+            </Setter>
+            <Setter
+                Property="CornerRadius"
+                Value="10"></Setter>
+            <Setter Property="BorderThickness" Value="1">
+            </Setter>
+          
+            <Setter
+                Property="Grid.RowSpan"
+                Value="3">
             </Setter>
         </Style>
         <!-- UniformGrid de los botones del abecedario -->
-        <Style TargetType="UniformGrid">
-            <Setter Property="Grid.RowSpan"
-                    Value="3">
+        <Style
+            TargetType="UniformGrid">
+            <Setter
+                Property="Grid.RowSpan"
+                Value="3">
             </Setter>
-            <Setter Property="Grid.Row" Value="2"></Setter>
-            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter
+                Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect />
+                </Setter.Value>
+            </Setter>
+            <Setter
+                Property="Grid.Row"
+                Value="2"></Setter>
+            <Setter
+                Property="Grid.Column"
+                Value="1"></Setter>
         </Style>
         <!-- Botones del abecedario -->
-        <Style TargetType="Button"
-               x:Key="abcButtons">
-            <Setter Property="Margin" Value="5">
+        <Style
+            TargetType="Button"
+            x:Key="abcButtons">
+            <Setter
+                Property="Margin"
+                Value="5">
             </Setter>
         </Style>
         <!-- ScrollViewer de Guiones y Palabra -->
-        <Style TargetType="ScrollViewer">
-            <Setter Property="HorizontalScrollBarVisibility"
-                    Value="Visible">
+        <Style
+            TargetType="ScrollViewer">
+            <Setter
+                Property="HorizontalScrollBarVisibility"
+                Value="Visible">
             </Setter>
-            <Setter Property="VerticalScrollBarVisibility"
-                    Value="Hidden">
+            <Setter
+                Property="VerticalScrollBarVisibility"
+                Value="Hidden">
             </Setter>
         </Style>
     </Window.Resources>
@@ -79,24 +156,47 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition
+                Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Image Source="assets\hangman\3.jpg"></Image>
-      
-        <StackPanel Grid.Row="3"
-                    Grid.Column="0">
-            <Button Style="{StaticResource partida}">Nueva Partida</Button>
-            <Button Style="{StaticResource partida}">Rendirse</Button>
+        <Border
+            Style="{StaticResource bordeImagen}">
+            <Image
+                x:Name="imagenAhorcado"
+                Source="assets\hangman\3.jpg"></Image>
+        </Border>
+        
+        <StackPanel
+            Grid.Row="3"
+            Grid.Column="0">
+            <Button
+                Tag="reiniciar"
+                Click="BotonesPartida"
+                Style="{StaticResource partida}">
+               Nueva Partida</Button>
+            <Button
+                Click="BotonesPartida"
+                Tag="rendirse"
+                Style="{StaticResource partida}">
+                 Rendirse</Button>
         </StackPanel>
 
-        <Label Grid.Row="0" Grid.Column="1">Ahorcado</Label>
-        
-        <ScrollViewer x:Name="palabraYGuiones"
-                   Grid.Row="1" Grid.Column="1"></ScrollViewer>
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            >Ahorcado</Label>
 
-        <UniformGrid x:Name="letrasUniformGrid" Rows="3" Columns="9"></UniformGrid>
+        <ScrollViewer
+            x:Name="palabraYGuiones"
+            Grid.Row="1"
+            Grid.Column="1"></ScrollViewer>
 
-        
+        <UniformGrid
+            x:Name="letrasUniformGrid"
+            Rows="3"
+            Columns="9"></UniformGrid>
+
+
     </Grid>
 </Window>

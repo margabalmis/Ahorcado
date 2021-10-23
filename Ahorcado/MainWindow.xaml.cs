@@ -23,14 +23,15 @@ namespace Ahorcado
     {
         readonly char[] abc = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K','L', 'M', 'N',
                                    'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U','V', 'W','X', 'Y', 'Z' };
-        readonly List<string> palabrasAdivinar = new List<string>() { "INFIERNO", "ÑU"};
+        readonly List<string> palabrasAdivinar = new List<string>() { "ACUMULACION", "PRIMITIVA", "BRUJAS","CAPITALISMO", 
+                                                                            "INFIERNO", "ÑU" , "CRISTALINO"};
         string palabraSeleccionada;
         char letraSeleccionada;
         TextBlock letra;
         int numGuiones;
         List<TextBlock> letraTextBlock = new List<TextBlock>();
-
-
+        int imgInicial = 3;
+        int totalImages = 10;
 
         public MainWindow()
         {
@@ -106,6 +107,7 @@ namespace Ahorcado
         {
             letraSeleccionada = char.Parse((sender as Button).Tag.ToString());
             ComprobarLetra();
+
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
@@ -116,12 +118,19 @@ namespace Ahorcado
             }
             else if (e.Key == Key.Escape)
             {
-                Rendirse();
+                Perder();
             }
             else {
                 string letra = e.Key.ToString();
-
-                ComprobarTeclaPulsada(char.Parse(letra));
+                if (letra.Equals("Oem3"))
+                {
+                    ComprobarTeclaPulsada('Ñ');
+                }
+                else
+                {
+                    ComprobarTeclaPulsada(char.Parse(letra));
+                }
+                
             }
              
         }
@@ -135,14 +144,33 @@ namespace Ahorcado
             ComprobarLetra();
         }
        
-        private void Rendirse()
+        private void Perder()
         {
-            throw new NotImplementedException();
+            string[] msg = new string[]
+            {
+                "Valla!! Esperaba algo más de ti",
+                "Pasapalabra no es lo tuyo",
+                "Aaaarrrrrg",
+                "Hay algien ahí"
+
+            };
+
+            int numMensage = 0;
+            Random r = new Random();
+            numMensage = r.Next(msg.Length);
+
+            MessageBox.Show(msg[numMensage], "Game Over", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.No);
+            NuevaPartida();
+        
         }
 
         private void NuevaPartida()
         {
-            throw new NotImplementedException();
+            ObtenerPalabra();
+            GerenarGuiones();
+            imgInicial = 3;
+            string uri = @"assets\hangman\3.jpg";
+            imagenAhorcado.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
         }
 
         private void ComprobarLetra()
@@ -169,7 +197,50 @@ namespace Ahorcado
 
         private void SumarFallo()
         {
-            throw new NotImplementedException();
+
+            imgInicial++;
+            string uri = @"assets\hangman\.jpg";
+
+            if (imgInicial < totalImages)
+            {
+                uri = @"assets\hangman\" + imgInicial + ".jpg";
+                imagenAhorcado.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
+            }
+            else
+            {
+                uri = @"assets\hangman\" + totalImages + ".jpg";
+                imagenAhorcado.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
+                string[] msg = new string[]
+                {
+                    "Valla!! Esperaba algo más de ti",
+                    "Pasapalabra no es lo tuyo",
+                    "Aaaarrrrrg",
+                    "Hay algien ahí"
+
+                };
+
+                int numMensage = 0;
+                Random r = new Random();
+                numMensage = r.Next(msg.Length);
+
+                MessageBox.Show(msg[numMensage], "Game Over", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.No);
+
+            }
+            
+        }
+
+        private void BotonesPartida(object sender, RoutedEventArgs e)
+        {
+            String botonPaartida = (sender as Button).Tag.ToString();
+
+            if (botonPaartida.Equals("reiniciar"))
+            {
+                NuevaPartida();
+            }
+            else if (botonPaartida.Equals("rendirse"))
+            {
+                Perder();
+            }
         }
     }
 }
