@@ -23,7 +23,7 @@ namespace Ahorcado
     {
         readonly char[] abc = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K','L', 'M', 'N',
                                    'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U','V', 'W','X', 'Y', 'Z' };
-        readonly List<string> palabrasAdivinar = new List<string>() { "ACUMULACION", "PRIMITIVA", "BRUJAS","CAPITALISMO", 
+        readonly List<string> palabrasAdivinar = new List<string>() { "ACUMULACION", "PRIMITIVA", "BRUMA","CAPITALISMO", 
                                                                             "INFIERNO", "ÑU" , "CRISTALINO"};
         readonly int totalImages = 10;
         string palabraSeleccionada;
