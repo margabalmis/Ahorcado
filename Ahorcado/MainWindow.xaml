@@ -13,19 +13,93 @@
     Icon="assets/iconLasso.png"
     Background="#FFFBFBF3">
     <Window.Resources>
-        <!--ViewBox label letras-->
+        <!--Window-->
         <Style
             TargetType="Window">
             <Setter
                 Property="Background"
                 Value="#FFEBF5F2"></Setter>
         </Style>
+        <!--TextBlock Titulo-->
+        <Style
+            TargetType="TextBlock"
+            x:Key="titulo">
+            <Setter
+                Property="FontWeight"
+                Value="Bold"></Setter>
+            <Setter
+                Property="Foreground"
+                Value="#FF7755ED"></Setter>
+            <Setter
+                Property="FontWeight"
+                Value="Bold"></Setter>
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
+            <Setter
+                Property="FontFamily"
+                Value="Miriam Libre"></Setter>
+
+            <Setter
+                Property="FontSize"
+                Value="40"></Setter>
+        </Style>
+        <!--TextBlock Botones Partida-->
+        <Style
+            TargetType="TextBlock"
+            x:Key="BotonesPartida">
+            <Setter
+                Property="Foreground"
+                Value="#FFEBF5F2"></Setter>
+            <Setter
+                Property="FontWeight"
+                Value="Bold"></Setter>
+            <Setter
+                Property="FontFamily"
+                Value="Miriam Libre"></Setter>
+            <Setter
+                Property="FontSize"
+                Value="20"></Setter>
+        </Style>
+        <!--TextBlock Botones Partida-->
+        <Style
+            TargetType="TextBlock">
+            <Setter
+                Property="Foreground"
+                Value="#FFEBF5F2"></Setter>
+            <Setter
+                Property="FontWeight"
+                Value="Bold"></Setter>
+            <Setter
+                Property="FontFamily"
+                Value="Miriam Libre"></Setter>
+            <Setter
+                Property="FontSize"
+                Value="35"></Setter>
+        </Style>
+        <!--TextBlock Letras Adivinadas-->
+        <Style
+            TargetType="TextBlock"
+            x:Key="letrasAdivinadas">
+            <Setter
+                Property="Foreground"
+                Value="#FF7755ED"></Setter>
+            <Setter
+                Property="FontWeight"
+                Value="Bold"></Setter>
+            <Setter
+                Property="FontFamily"
+                Value="Miriam Libre"></Setter>
+            <Setter
+                Property="FontSize"
+                Value="45"></Setter>
+        </Style>
         <!--ViewBox label letras-->
         <Style
             TargetType="Viewbox">
             <Setter
                 Property="Margin"
-                Value="2"></Setter>
+                Value="5"></Setter>
         </Style>
         <!--WrapPanel label letras-->
         <Style
@@ -34,59 +108,112 @@
                 Property="HorizontalAlignment"
                 Value="Center"></Setter>
         </Style>
-
+        <!--Label-->
+        <Style
+            TargetType="Label">
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
+        </Style>
+        <!--Label Titulo-->
+        <Style
+            TargetType="Label"
+            x:Key="tituloLabel"
+            BasedOn="{StaticResource {x:Type Label}}">
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
+            <Setter
+                Property="VerticalAlignment"
+                Value="Top"></Setter>
+        </Style>
         <!--StackPanel de Botones Nueva Partida y Rendirse-->
         <Style
             TargetType="StackPanel">
             <Setter
                 Property="Orientation"
                 Value="Horizontal"></Setter>
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Center"></Setter>
         </Style>
         <!--Botones Nueva Partida y Rendirse-->
         <Style
             TargetType="Button"
             x:Key="partida">
             <Setter
+                Property="Background"
+                Value="#FF7755ED"></Setter>
+            <Setter
+                Property="BorderBrush"
+                Value="#FF473192"></Setter>
+            <Setter
                 Property="Width"
-                Value="100"></Setter>
+                Value="155"></Setter>
             <Setter
                 Property="Height"
-                Value="30"></Setter>
+                Value="35"></Setter>
             <Setter
                 Property="Margin"
-                Value="15"></Setter>
+                Value="10"></Setter>
             <Setter
                 Property="HorizontalAlignment"
                 Value="Center"></Setter>
             <Setter
                 Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect />
+                    <DropShadowEffect
+                        Color="#FF473192" />
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--Label Ahorcado-->
+        <!--Borde Imagen-->
         <Style
-            TargetType="Label">
+            TargetType="{x:Type Border}"
+            x:Key="bordeImagen">
             <Setter
-                Property="FontFamily"
-                Value="MingLiU_HKSCS-ExtB"></Setter>
+                Property="CornerRadius"
+                Value="5">
+            </Setter>
             <Setter
-                Property="FontWeight"
-                Value="ExtraBold"></Setter>
+                Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                        Color="#FF473192" />
+                </Setter.Value>
+            </Setter>
             <Setter
-                Property="HorizontalAlignment"
-                Value="Center"></Setter>
+                Property="BorderBrush"
+                Value="#FF7755ED">
+            </Setter>
             <Setter
-                Property="FontSize"
-                Value="32"></Setter>
-            
+                Property="BorderThickness"
+                Value="5">
+            </Setter>
             <Setter
-                Property="Grid.Height"
-                Value="50"></Setter>
+                Property="Margin"
+                Value="10">
+            </Setter>
+        </Style>
+        <!--Borde Guiones-->
+        <Style
+            TargetType="{x:Type Border}"
+            x:Key="bordeGuiones">
             <Setter
-                Property="VerticalAlignment"
-                Value="Top"></Setter>
+                Property="BorderBrush"
+                Value="#FF7755ED">
+            </Setter>
+            <Setter
+                Property="BorderThickness"
+                Value="0,0,0,5">
+            </Setter>
+            <Setter
+                Property="Margin"
+                Value="3">
+            </Setter>
         </Style>
         <!--Imagen-->
         <Style
@@ -95,21 +222,7 @@
                 Property="Stretch"
                 Value="Fill">
             </Setter>
-        </Style>
-        <!--Borde Imagen-->
-        <Style
-            TargetType="Border"
-            x:Key="bordeImagen">
-            <Setter
-                Property="Grid.RowSpan"
-                Value="3">
-            </Setter>
-            <Setter
-                Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect />
-                </Setter.Value>
-            </Setter>
+
         </Style>
         <!-- UniformGrid de los botones del abecedario -->
         <Style
@@ -121,7 +234,8 @@
             <Setter
                 Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect />
+                    <DropShadowEffect
+                        Color="#FF473192" />
                 </Setter.Value>
             </Setter>
             <Setter
@@ -136,8 +250,21 @@
             TargetType="Button"
             x:Key="abcButtons">
             <Setter
+                Property="Background"
+                Value="#FF7755ED"></Setter>
+            <Setter
+                Property="BorderBrush"
+                Value="#FF473192"></Setter>
+            <Setter
                 Property="Margin"
-                Value="5">
+                Value="8">
+            </Setter>
+            <Setter
+                Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                        Color="#FF473192" />
+                </Setter.Value>
             </Setter>
         </Style>
         <!-- ScrollViewer de Guiones y Palabra -->
@@ -167,12 +294,12 @@
         </Grid.ColumnDefinitions>
 
         <Border
+            Grid.RowSpan="3"
             Style="{StaticResource bordeImagen}">
             <Image
                 x:Name="imagenAhorcado"
                 Source="assets\hangman\3.jpg"></Image>
         </Border>
-        
         <StackPanel
             Grid.Row="3"
             Grid.Column="0">
@@ -180,25 +307,44 @@
                 Tag="reiniciar"
                 Click="BotonesPartida"
                 Style="{StaticResource partida}">
-               Nueva Partida</Button>
+                <TextBlock
+                    Style="{StaticResource BotonesPartida}"
+                    Text="Nueva Partida">
+                </TextBlock>
+            </Button>
             <Button
                 Click="BotonesPartida"
                 Tag="rendirse"
                 Style="{StaticResource partida}">
-                 Rendirse</Button>
+                <TextBlock
+                    Style="{StaticResource BotonesPartida}"
+                    Text="Rendirse">
+                </TextBlock>
+            </Button>
         </StackPanel>
 
-        <Label
-            Grid.Row="0"
-            Grid.Column="1">Ahorcado</Label>
+       
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource tituloLabel}">
+            <TextBlock
+                Style="{StaticResource titulo}"
+                Text=" AHORCADO ">
+            </TextBlock>
+            </Label>
+        
+       
 
         <ScrollViewer
             x:Name="palabraYGuiones"
+            Margin="5"
             Grid.Row="1"
             Grid.Column="1"></ScrollViewer>
 
         <UniformGrid
             x:Name="letrasUniformGrid"
+            Margin="20"
             Rows="3"
             Columns="9"></UniformGrid>
 

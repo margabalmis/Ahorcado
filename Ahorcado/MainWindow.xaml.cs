@@ -32,7 +32,6 @@ namespace Ahorcado
         List<TextBlock> letraTextBlock = new List<TextBlock>();
         int imgInicial = 3;
         int totalImages = 10;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -52,16 +51,17 @@ namespace Ahorcado
                 Viewbox viewGuiones = new Viewbox();
                 Border border = new Border();
                 Label guion = new Label();
+
                 letra = new TextBlock()
                 {
                     MinWidth = 25,
                     Text = letras[i].ToString(),
                     Visibility = Visibility.Hidden,
-                };
+                    Style = (Style)this.Resources["letrasAdivinadas"]
+            };
                 letraTextBlock.Add(letra);
 
-                border.BorderBrush = Brushes.Black;
-                border.BorderThickness = new Thickness(0, 0, 0, 2);
+                border.Style = (Style)this.Resources["bordeGuiones"];
 
                 guion.Content = letra;
                 border.Child = guion;
@@ -128,7 +128,14 @@ namespace Ahorcado
                 }
                 else
                 {
-                    ComprobarTeclaPulsada(char.Parse(letra));
+                    try
+                    {
+                        ComprobarTeclaPulsada(char.Parse(letra));
+                    }
+                    catch
+                    { 
+                       
+                    }
                 }
                 
             }
@@ -150,7 +157,7 @@ namespace Ahorcado
             {
                 "Valla!! Esperaba algo más de ti",
                 "Pasapalabra no es lo tuyo",
-                "Aaaarrrrrg",
+                "Loooser!!!",
                 "Hay algien ahí"
 
             };
@@ -176,23 +183,50 @@ namespace Ahorcado
         private void ComprobarLetra()
         {
             Char[] palabraArrayCaracteres = palabraSeleccionada.ToCharArray();
+            int letrasAcertadas;
 
             if (palabraArrayCaracteres.Contains(letraSeleccionada))
             {
-                foreach( TextBlock textBlock in letraTextBlock )
+                letrasAcertadas = 0;
+                foreach (TextBlock textBlock in letraTextBlock)
                 {
+
                     if (textBlock.Text == letraSeleccionada.ToString())
                     {
                         textBlock.Visibility = Visibility.Visible;
                     }
+                    if (textBlock.Visibility == Visibility.Visible)
+                    {
+                        letrasAcertadas++;
+                    }
                 }
-
+                if (letrasAcertadas == numGuiones)
+                {
+                    PartidaGanada();
+                }
             }
-            else 
+            else
             {
                 SumarFallo();
             }
+        }
 
+        private void PartidaGanada()
+        {
+            string[] msg = new string[]
+                {
+                    "!!!Excelente!!!",
+                    "You are THE BEST!!!",
+                    "No has aprobado PSP pero...\n!!ENHORABUENA!! por hoy esta bien.",
+                    "FELICIDADES!!!!\nPodrás reclamar tu premio a final de curso."
+
+                };
+
+            int numMensage = 0;
+            Random r = new Random();
+            numMensage = r.Next(msg.Length);
+
+            MessageBox.Show(msg[numMensage], "VICTORY", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.No);
         }
 
         private void SumarFallo()
@@ -212,10 +246,10 @@ namespace Ahorcado
                 imagenAhorcado.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
                 string[] msg = new string[]
                 {
-                    "Valla!! Esperaba algo más de ti",
-                    "Pasapalabra no es lo tuyo",
+                    "Valla!! Esperaba algo más de ti.",
+                    "No lo intentes en Pasapalabra",
                     "Aaaarrrrrg",
-                    "Hay algien ahí"
+                    "Hola, hay alguien ahí???"
 
                 };
 
@@ -226,7 +260,6 @@ namespace Ahorcado
                 MessageBox.Show(msg[numMensage], "Game Over", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.No);
 
             }
-            
         }
 
         private void BotonesPartida(object sender, RoutedEventArgs e)
