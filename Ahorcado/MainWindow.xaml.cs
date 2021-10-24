@@ -25,13 +25,13 @@ namespace Ahorcado
                                    'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U','V', 'W','X', 'Y', 'Z' };
         readonly List<string> palabrasAdivinar = new List<string>() { "ACUMULACION", "PRIMITIVA", "BRUJAS","CAPITALISMO", 
                                                                             "INFIERNO", "ÑU" , "CRISTALINO"};
+        readonly int totalImages = 10;
         string palabraSeleccionada;
         char letraSeleccionada;
         TextBlock letra;
         int numGuiones;
-        List<TextBlock> letraTextBlock = new List<TextBlock>();
+        List<TextBlock> letraTextBlock;
         int imgInicial = 3;
-        int totalImages = 10;
         public MainWindow()
         {
             InitializeComponent();
@@ -42,6 +42,7 @@ namespace Ahorcado
 
         private void GerenarGuiones()
         {
+            letraTextBlock = new List<TextBlock>();
             char[] letras = palabraSeleccionada.ToCharArray();
             numGuiones = palabraSeleccionada.Length;
             WrapPanel guiones = new WrapPanel();
@@ -162,7 +163,7 @@ namespace Ahorcado
 
             };
 
-            int numMensage = 0;
+            int numMensage;
             Random r = new Random();
             numMensage = r.Next(msg.Length);
 
@@ -183,11 +184,11 @@ namespace Ahorcado
         private void ComprobarLetra()
         {
             Char[] palabraArrayCaracteres = palabraSeleccionada.ToCharArray();
-            int letrasAcertadas;
+            int letrasAcertadas = 0;
 
             if (palabraArrayCaracteres.Contains(letraSeleccionada))
             {
-                letrasAcertadas = 0;
+                
                 foreach (TextBlock textBlock in letraTextBlock)
                 {
 
@@ -200,7 +201,7 @@ namespace Ahorcado
                         letrasAcertadas++;
                     }
                 }
-                if (letrasAcertadas == numGuiones)
+                if (letrasAcertadas == palabraSeleccionada.Length)
                 {
                     PartidaGanada();
                 }
@@ -222,7 +223,7 @@ namespace Ahorcado
 
                 };
 
-            int numMensage = 0;
+            int numMensage;
             Random r = new Random();
             numMensage = r.Next(msg.Length);
 
@@ -233,7 +234,7 @@ namespace Ahorcado
         {
 
             imgInicial++;
-            string uri = @"assets\hangman\.jpg";
+            string uri;
 
             if (imgInicial < totalImages)
             {
@@ -253,7 +254,7 @@ namespace Ahorcado
 
                 };
 
-                int numMensage = 0;
+                int numMensage;
                 Random r = new Random();
                 numMensage = r.Next(msg.Length);
 

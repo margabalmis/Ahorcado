@@ -6,9 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Ahorcado"
     mc:Ignorable="d"
+    MinHeight="600"
+    MinWidth="1100"
+    Width="1100"
+    Height="600"
     Title="Ahorcado"
-    Height="450"
-    Width="800"
     KeyUp="Window_KeyUp"
     Icon="assets/iconLasso.png"
     Background="#FFFBFBF3">
@@ -16,6 +18,7 @@
         <!--Window-->
         <Style
             TargetType="Window">
+            
             <Setter
                 Property="Background"
                 Value="#FFEBF5F2"></Setter>
